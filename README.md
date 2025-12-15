@@ -1260,6 +1260,7 @@ We got the opportunity to create a game and strengthen our skills in VHDL.
 		   
 12/15/2025
 * Added counter to show number of attempts left
+* Finalized the poster
 
 ## Future Works
 Future works include creating the Plinko with a betting system and implementing changes in location of the bats after hitting it.
