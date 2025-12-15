@@ -31,7 +31,7 @@ Some kind of high level block diagram showing how different parts of your progra
 | Signal | Board Resource | Description |
 |------|---------------|-------------|
 | `clk_in` | 100 MHz clock | System clock |
-| `btn0` | Pushbutton | Serve / start |
+| `btn0` | Pushbutton | Serve / start | 
 | `btnl` | Pushbutton | Move bat left |
 | `btnr` | Pushbutton | Move bat right |
 
@@ -44,7 +44,10 @@ Some kind of high level block diagram showing how different parts of your progra
 | `VGA_hsync` | VGA | Horizontal sync |
 | `VGA_vsync` | VGA | Vertical sync |
 | `SEG7_anode[7:0]` | 7-seg | Digit select |
+| `Counter` | 7-seg | Segment data |
 | `SEG7_seg[6:0]` | 7-seg | Segment data |
+| `SEG7_seg[6:0]` | 7-seg | Segment data |
+
 
 --- 
 ## Modifications
@@ -65,7 +68,13 @@ talk about how we used lab 6
 
 --- 
 ## Conclusion
-who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc.
+In conclusion, our group has the wonderful opportunity We created the game Plinko by coding VHDL  in Vivado.
+We got the opportunity to create a game and strengthen our skills in VHDL.
+
+## Future Works
+Future works include creating the Plinko with a betting system and implementing changes in location of the bats after hitting it.
+
+
 
 
 
