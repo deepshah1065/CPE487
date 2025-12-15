@@ -20,9 +20,10 @@ The design follows the modular structure used in the course labs, with separate 
 <img src="monitor.png" alt="drawing" width="200"/>
 
 - **VGA cable**
-![VGA Cable](vga_cable.jpg)
+<img src="vga_cable.jpg" alt="drawing" width="200"/>
+
 - **USB cable** (programming and power)
-![USB](micro_usb_cable.png)
+<img src="micro_usb_cable.png" alt="drawing" width="200"/>
 --- 
 ## Diagrams
 Some kind of high level block diagram showing how different parts of your program connect together and/or showing how what you have created might fit into a more complete system could be appropriate instead
