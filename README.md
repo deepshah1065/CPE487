@@ -66,8 +66,8 @@ talk about how we used lab 6
 1. Download all VHDL and .xdc files from this repo
 2. Create a new Vivado project for the Nexys A7-100T
 3. Add Sources:
-.vhd
-.vhd
+bat_n_ball.vhd
+pong.vhd
 4. Add Constraints File: .xdc
 5. Run Synthesis
 6. Run Implementation
