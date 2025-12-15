@@ -1,9 +1,9 @@
 # FPGA VGA Plinko Game (Nexys Board)
 
 ## Project Overview
-This project implements a **VGA-based Plinko-style arcade game** on the **Digilent Nexys FPGA board** using **VHDL** and **Vivado**. The game features gravity-driven ball motion through a fixed field of pegs and multiple scoring zones at the bottom of the screen. The system generates real-time VGA video, processes user input via onboard pushbuttons, and displays a running score on the onboard 7-segment display.
+This project implements a **VGA-based Plinko-style arcade game** on the **Digilent Nexys A7 FPGA board** using **VHDL** and **Vivado**. The game features gravity-driven ball motion through a fixed field of pegs and multiple scoring zones at the bottom of the screen. The system generates real-time VGA video, processes user input via onboard pushbuttons, and displays a running score on the onboard 7-segment display.
 
-Here's the game we are basing our project off of:
+Here's the game we are basing our project on:
 
 ![Plinko](RealPlinko.jpg)
 
