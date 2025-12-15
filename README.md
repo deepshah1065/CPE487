@@ -1,7 +1,57 @@
 # CPE487
 ## What's goodie my guy!
-FPGA VGA Plinko Game (Nexys Board)
+# FPGA VGA Plinko Game (Nexys Board)
 
-Project Overview
+## Project Overview
+This project implements a **VGA-based Plinko-style arcade game** on the **Digilent Nexys FPGA board** using **VHDL** and **Vivado**. The game features gravity-driven ball motion through a fixed field of pegs and multiple scoring zones at the bottom of the screen. The system generates real-time VGA video, processes user input via onboard pushbuttons, and displays a running score on the onboard 7-segment display.
 
-This project implements a VGA-based Plinko-style arcade game on the Digilent Nexys FPGA board using VHDL and Vivado. The system features gravity-driven ball motion through a fixed peg field and multiple scoring zones at the bottom of the screen.
+The design follows the modular structure used in the course labs, with separate components for:
+- VGA timing and pixel scanning
+- Game logic (ball physics, peg collisions, scoring)
+- Clock generation
+- Seven-segment display control
+## Required Hardware
+- **Digilent Nexys FPGA board**
+- **VGA monitor** (800×600 @ 60 Hz)
+- **VGA cable**
+- **USB cable** (programming and power)
+--- 
+## Diagrams
+
+##Add gif/vid/pics of gameplay
+---
+
+## Inputs and Outputs
+### Inputs
+| Signal | Board Resource | Description |
+|------|---------------|-------------|
+| `clk_in` | 100 MHz clock | System clock |
+| `btn0` | Pushbutton | Serve / start |
+| `btnl` | Pushbutton | Move bat left |
+| `btnr` | Pushbutton | Move bat right |
+
+### Outputs
+| Signal | Board Resource | Description |
+|-------|---------------|-------------|
+| `VGA_red[3:0]` | VGA DAC | Red channel |
+| `VGA_green[3:0]` | VGA DAC | Green channel |
+| `VGA_blue[3:0]` | VGA DAC | Blue channel |
+| `VGA_hsync` | VGA | Horizontal sync |
+| `VGA_vsync` | VGA | Vertical sync |
+| `SEG7_anode[7:0]` | 7-seg | Digit select |
+| `SEG7_seg[6:0]` | 7-seg | Segment data |
+
+--- 
+## Modifications
+talk about how we used lab 6
+
+--- 
+## Project Setup Instructions
+copy and paste from lab 6 basically lol
+
+--- 
+## Conclusion
+who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc.
+
+
+
