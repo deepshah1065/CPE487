@@ -1,5 +1,3 @@
-# CPE487
-## What's goodie my guy!
 # FPGA VGA Plinko Game (Nexys Board)
 
 ## Project Overview
@@ -54,7 +52,16 @@ talk about how we used lab 6
 
 --- 
 ## Project Setup Instructions
-copy and paste from lab 6 basically lol
+1. Download all VHDL and .xdc files from this repo
+2. Create a new Vivado project for the Nexys A7-100T
+3. Add Sources:
+.vhd
+.vhd
+4. Add Constraints File: .xdc
+5. Run Synthesis
+6. Run Implementation
+7. Generate Bitstream
+8. Open Hardware Manager and Program the Device
 
 --- 
 ## Conclusion
