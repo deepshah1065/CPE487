@@ -15,9 +15,8 @@ The design follows the modular structure used in the course labs, with separate 
 ## Required Hardware
 - **Digilent Nexys FPGA board**
 <img src="image.jpg" alt="drawing" width="200"/>
-![FPGA Board](image.jpg)
 - **VGA monitor** (800×600 @ 60 Hz)
-![VGA Monitor](monitor.png)
+<img src="monitor.jpg" alt="drawing" width="200"/>
 - **VGA cable**
 ![VGA Cable](vga_cable.jpg)
 - **USB cable** (programming and power)
