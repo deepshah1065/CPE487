@@ -724,7 +724,7 @@ BEGIN
     
 END Behavioral;
 ```
-### Pong VHDL File
+### Leddec16 VHDL File
 ``` vhdl
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
