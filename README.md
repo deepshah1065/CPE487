@@ -57,7 +57,7 @@ Some kind of high level block diagram showing how different parts of your progra
 | `SEG7_seg[6:0]` | 7-seg | Segment data |
 
 ### Bat and Ball VHDL File
-'''vdhl
+'''vhdl
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_ARITH.ALL;
