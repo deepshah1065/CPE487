@@ -1235,6 +1235,7 @@ We got the opportunity to create a game and strengthen our skills in VHDL.
 ## Timeline
 11/14/2025 
 * Began brainstorming ideas for the project
+
 11/18/2025
 * Submitted our project idea as Plinko
 
@@ -1245,10 +1246,13 @@ We got the opportunity to create a game and strengthen our skills in VHDL.
 11/25/2025 
 * Added pegs that were spread out across the screen.
 * Reworked the ball so that it would be dropped from the top instead of coming from the bottom
+
 12/2/2025
 * Recolored the bats to be different colors
+
 12/4/2025
 * Added the ability to record what the score of the game
+
 12/14/2025
 * Added collision to the pegs
 * Made the ball visible before it was dropped
