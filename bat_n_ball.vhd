@@ -275,22 +275,6 @@ BEGIN
             ball_x_1 <= ball_x;
         END IF;
         
-        -- Bounce off top wall
-        IF ball_y <= bsize THEN
-            ball_y_motion <= ball_speed;
-        -- Bounce off bottom wall - decrement attempts
-        ELSIF ball_y + bsize >= 575 THEN
-            ball_y_motion <= ball_speed;
-            game_on <= '0';
-            -- Decrement attempts when ball reaches bottom
-            IF attempts1 > "0000" THEN
-                attempts1 <= attempts1 - 1;
-            ELSE
-                attempts1 <= "0000";
-                game_over <= '1';
-            END IF;
-        END IF;
-        
         -- Bounce off left or right walls
         IF ball_x_1 + bsize >= 800 THEN
             ball_x_motion <= (NOT ball_speed) + 1;
