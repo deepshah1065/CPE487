@@ -46,9 +46,9 @@ The design follows the modular structure used in the course labs, with separate 
 
 ---
 ## Diagrams
-### Module Hierarchy Diagram
+### Module Hierarchy 
 ![Diagram](ModuleHierarchy.png)
-### Game Functionality Diagram
+### Game Functionality
 ![Diagram](GameFunctionality.jpg)
 
 ---
@@ -80,7 +80,7 @@ The design follows the modular structure used in the course labs, with separate 
 * ![clk_wiz_0](clk_wiz_0.vhd)
 * ![clk_wiz_0_clk_wiz](clk_wiz_0_clk_wiz.vhd)
 * ![leddec16](leddec16.vhd)
-* ![pong](pong.vhd)
+* ![pong vhd](pong.vhd)
 * ![vga_sync](vga_sync.vhd)
 * ![pong xdc](pong.xdc)
 
@@ -99,6 +99,38 @@ SIGNAL attempts1  : STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL game_on    : STD_LOGIC := '0';
 SIGNAL game_over  : STD_LOGIC := '0';
 SIGNAL lockpoint  : STD_LOGIC := '0';
+SIGNAL ball_on1 : STD_LOGIC := '0'; 
+SIGNAL bat_on1 : STD_LOGIC; 
+SIGNAL bat_on2 : STD_LOGIC; 
+SIGNAL bat_on3 : STD_LOGIC; 
+SIGNAL bat_on4 : STD_LOGIC; 
+SIGNAL bat_on5 : STD_LOGIC; 
+SIGNAL bat_on6 : STD_LOGIC; 
+SIGNAL bat_on7 : STD_LOGIC; 
+SIGNAL bat_on8 : STD_LOGIC;
+CONSTANT bat_x1 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(45, 11);
+CONSTANT bat_y1 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+CONSTANT bat_x2 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(145, 11);
+CONSTANT bat_y2 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+CONSTANT bat_x3 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(245, 11);
+CONSTANT bat_y3 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+CONSTANT bat_x4 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(345, 11);
+CONSTANT bat_y4 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+CONSTANT bat_x5 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(445, 11);
+CONSTANT bat_y5 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+CONSTANT bat_x6 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(545, 11);
+CONSTANT bat_y6 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+CONSTANT bat_x7 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(645, 11);
+CONSTANT bat_y7 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+CONSTANT bat_x8 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(745, 11);
+CONSTANT bat_y8 : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(575, 11);
+type balls is array (0 to max_columns, 0 to max_rows) of integer;
+SIGNAL balls_x, balls_y: balls;
+type peg_hit_array is array (0 to max_columns, 0 to max_rows) of STD_LOGIC;
+SIGNAL pegs_hit : peg_hit_array := (others => (others => '0'));
+SIGNAL Random_Generator : STD_LOGIC_VECTOR(10 DOWNTO 0) := "10110100101
+SIGNAL peg_collision : STD_LOGIC := '0';
+SIGNAL bat_collision : STD_LOGIC := '0';
 ...
 ````
 
@@ -106,7 +138,7 @@ SIGNAL lockpoint  : STD_LOGIC := '0';
 
 ## Button-Controlled Ball Position
 
-Before the ball is served, the player can move the ball left and right using the FPGA buttons. The ball’s X-position follows the input value until the serve button is pressed.
+Before the ball is served, the player can move the ball left and right using the BTNL and BTNR buttons, respectively. The ball’s X-position follows the input value until the serve button is pressed.
 
 ```vhdl
 ELSIF game_on = '0' THEN
@@ -165,13 +197,13 @@ IF bat7_hit = '1' THEN
 END IF;
 ```
 
-Some bats award zero points, adding risk and strategy to where the ball lands.
+The same was applied to all 8 bats. Some bats award zero points, adding risk and strategy to where the ball lands. 
 
 ---
 
 ## Attempts and Game Over Logic
 
-The game includes a limited number of attempts. Each time the ball reaches the bottom, one attempt is consumed. The attempts decrement from 5,4,3,2, to 1 which allows 5 attempts. When no attempts remain, the game ends. 
+The game includes a limited number of attempts. Each time the ball reaches the bottom, one attempt is consumed. The attempts decrement from 5, 4, 3, 2, to 1 which allows 5 attempts. When no attempts remain, the game ends. 
 
 ```vhdl
 IF attempts1 > "0001" THEN
@@ -301,7 +333,7 @@ BEGIN
 ```
 
 ### `leddec16.vhd`
-This file was modified so there are more bits in data. Since we needed 4 anodes for the score and 1 anode for the amount of attempts the player has. We also had to turn on the 5th anode to display the attempts.
+This file was modified so there are more bits (16 to 20) in 'data'. Since we needed 4 anodes for the score and 1 anode for the amount of attempts the player has. We also had to turn on the 5th anode to display the attempts.
 ```vhdl
 ENTITY leddec16 IS
 	PORT (
@@ -335,7 +367,7 @@ BEGIN
 
 --- 
 ## Project Setup Instructions
-1. Download all VHDL and .xdc files from this repo
+1. Download all .vhd and .xdc files from this repository
 2. Create a new Vivado project for the Nexys A7-100T
 3. Add Sources: clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd, and pong.vhd
 4. Add Constraints File: pong.xdc
@@ -359,11 +391,11 @@ BEGIN
 * Submitted our project idea as Plinko
 
 11/20/2025
-* Began work on the Plinko project by modifying the Pong lab
+* Began working on the Plinko project by modifying the Pong lab
 * Reworked the bat functionality so 8 appeared on the bottom
 		   
 11/25/2025 
-* Added pegs that were spread out across the screen.
+* Added pegs that were spread out across the screen
 * Reworked the ball so that it would be dropped from the top instead of coming from the bottom
 
 12/2/2025
@@ -382,7 +414,7 @@ BEGIN
 * Finalized the poster
 
 ### Difficulties
-The greatest difficulty our team encountered was creating collisions between the pegs and the ball. We mainly had issues with detecting the overlap of the ball and the pegs. We fixed this by adjusting the detection dimensions of the peg to allow for better overlap with the ball. Another issue we had was with the random bounce that the ball would have when it collided with a peg. We fixed this by implementing a signal that has a fixed value that would determine which way the ball bounced. Since it would reset with every clock cycle, this demonstrated the random effect taking place of whether it went to the right or left.
+The greatest difficulty our team encountered was creating collisions between the pegs and the ball. We mainly had issues with detecting the overlap of the ball and the pegs. We fixed this by adjusting the detection dimensions of the peg to allow for better overlap with the ball. Another issue we had was with the random bounce that the ball would have when it collided with a peg. We fixed this by implementing a signal that has a random bit sequence and applying LFSR that would determine which way the ball bounced. Since it would reset with every clock cycle, this demonstrated the random effect taking place of whether it went to the right or left.
 
 ### Responsibility
 As a group, we all contributed to the GitHub Repository. 
@@ -406,6 +438,7 @@ Deep Shah:
 If we wanted to continue working on our project in the future, we plan to implement:
 * Implementing a betting system in the current Plinko game where the user starts with a set amount of money, which is displayed on the anodes. The user can place a bet, and if the ball hits a bat, their money could increase or decrease. This adds excitement and introduces a risk element to the game.
 * After the ball hits a bat, the bats will randomly change their locations.
+* Impleneting showing scores on the bats.
 
 
 
