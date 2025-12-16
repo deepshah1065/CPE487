@@ -76,13 +76,13 @@ The design follows the modular structure used in the course labs, with separate 
 
 --- 
 ## Code Files
-*![bat_n_ball](bat_n_ball.vhd)
-*![clk_wiz_0](clk_wiz_0.vhd)
-*![clk_wiz_0_clk_wiz](clk_wiz_0_clk_wiz.vhd)
-*![leddec16](leddec16.vhd)
-*![pong](pong.vhd)
-*![vga_sync](vga_sync.vhd)
-*![pong xdc](pong.xdc)
+* ![bat_n_ball](bat_n_ball.vhd)
+* ![clk_wiz_0](clk_wiz_0.vhd)
+* ![clk_wiz_0_clk_wiz](clk_wiz_0_clk_wiz.vhd)
+* ![leddec16](leddec16.vhd)
+* ![pong](pong.vhd)
+* ![vga_sync](vga_sync.vhd)
+* ![pong xdc](pong.xdc)
 
 ## Modifications
 
