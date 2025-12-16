@@ -1214,7 +1214,143 @@ set_property -dict {PACKAGE_PIN J17 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[
 
 --- 
 ## Modifications
-talk about how we used lab 6
+### `pong.vhd`
+The top level file of our project was based off of `pong.vhd` from Lab 6. We modified the original “batpos” from lab 6 to now be “ball_x_pos.” Instead of the bat moving, the ball can move from side to side. We also implemented “btnl-counter” and “btnr-counter” to slow down how fast the ball moves when a button is held. The clock runs fast, so if the ball moved every time the clock ticked, it would fly across the screen instantly. Instead, when the left or right button is held down, the counter starts counting clock cycles, and only when it reaches 1,000,000 does the ball move a little bit. After the ball moves, the counter resets and starts counting again. If the button is released, the counter resets right away. This makes the ball move smoothly and at a speed that can actually be controlled.
+```
+
+   COMPONENT bat_n_ball IS
+        PORT (
+            v_sync : IN STD_LOGIC;
+            pixel_row : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+            pixel_col : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+            serve : IN STD_LOGIC;
+            red : OUT STD_LOGIC;
+            green : OUT STD_LOGIC;
+            blue : OUT STD_LOGIC;
+            counter : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+            attempts : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+            ball_x : IN STD_LOGIC_VECTOR (10 DOWNTO 0)
+        );
+    END COMPONENT;
+    
+    COMPONENT vga_sync IS
+        PORT (
+            pixel_clk : IN STD_LOGIC;
+            red_in    : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+            green_in  : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+            blue_in   : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+            red_out   : OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
+            green_out : OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
+            blue_out  : OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
+            hsync : OUT STD_LOGIC;
+            vsync : OUT STD_LOGIC;
+            pixel_row : OUT STD_LOGIC_VECTOR (10 DOWNTO 0);
+            pixel_col : OUT STD_LOGIC_VECTOR (10 DOWNTO 0)
+        );
+    END COMPONENT;
+    
+    COMPONENT clk_wiz_0 is
+        PORT (
+            clk_in1  : in std_logic;
+            clk_out1 : out std_logic
+        );
+    END COMPONENT;
+    
+    COMPONENT leddec16 IS
+        PORT (
+            dig : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+            data : IN STD_LOGIC_VECTOR (19 DOWNTO 0);
+            anode : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            seg : OUT STD_LOGIC_VECTOR (6 DOWNTO 0)
+        );
+    END COMPONENT;
+    
+BEGIN
+    button_control : PROCESS (clk_in) is
+    BEGIN
+        if rising_edge(clk_in) then
+            IF btnl = '1' THEN
+                btnl_counter <= btnl_counter + 1;
+                IF btnl_counter = 1000000 THEN
+                    IF ball_x_pos > 20 THEN
+                        ball_x_pos <= ball_x_pos - 5;
+                    END IF;
+                    btnl_counter <= (OTHERS => '0');
+                END IF;
+            ELSE
+                btnl_counter <= (OTHERS => '0');
+            END IF;
+            
+            IF btnr = '1' THEN
+                btnr_counter <= btnr_counter + 1;
+                IF btnr_counter = 1000000 THEN
+                    IF ball_x_pos < 780 THEN
+                        ball_x_pos <= ball_x_pos + 5;
+                    END IF;
+                    btnr_counter <= (OTHERS => '0');
+                END IF;
+            ELSE
+                btnr_counter <= (OTHERS => '0');
+            END IF;
+        end if;
+    END PROCESS;
+    
+    counter_display : PROCESS (clk_in)
+    BEGIN
+        if rising_edge(clk_in) then
+            count <= count + 1;
+        end if;
+    END PROCESS;
+    
+    led_mpx <= count(19 DOWNTO 17);
+    
+    add_bb : bat_n_ball
+    PORT MAP(
+        v_sync => S_vsync, 
+        pixel_row => S_pixel_row, 
+        pixel_col => S_pixel_col, 
+        serve => btn0, 
+        red => S_red, 
+        green => S_green, 
+        blue => S_blue,
+        counter => display(6 DOWNTO 0),
+        attempts => attempts_sig,
+        ball_x => ball_x_pos
+    );
+```
+
+### `leddec16.vhd`
+This file was modified so there are more bits in data. Since we needed 4 anodes for the score and 1 anode for the amount of attempts the player has. We also had to turn on the 5th anode to display the attempts.
+```
+ENTITY leddec16 IS
+	PORT (
+		dig : IN STD_LOGIC_VECTOR (2 DOWNTO 0); -- which digit to currently display
+		data : IN STD_LOGIC_VECTOR (19 DOWNTO 0); -- 20-bit (5-digit) data
+		anode : OUT STD_LOGIC_VECTOR (7 DOWNTO 0); -- which anode to turn on
+		seg : OUT STD_LOGIC_VECTOR (6 DOWNTO 0)); -- segment code for current digit
+END leddec16;
+
+ARCHITECTURE Behavioral OF leddec16 IS
+	SIGNAL data4 : STD_LOGIC_VECTOR (3 DOWNTO 0); -- binary value of current digit
+BEGIN
+	-- Select digit data to be displayed in this mpx period
+	data4 <= data(3 DOWNTO 0) WHEN dig = "000" ELSE -- digit 0
+	         data(7 DOWNTO 4) WHEN dig = "001" ELSE -- digit 1
+	         data(11 DOWNTO 8) WHEN dig = "010" ELSE -- digit 2
+	         data(15 DOWNTO 12) WHEN dig = "011" ELSE -- digit 3
+	         data(19 DOWNTO 16); -- digit 4
+
+...
+
+	anode <= "11111110" WHEN dig = "000" ELSE -- 0
+	         "11111101" WHEN dig = "001" ELSE -- 1
+	         "11111011" WHEN dig = "010" ELSE -- 2
+	         "11110111" WHEN dig = "011" ELSE -- 3
+	         "11101111" WHEN dig = "100" ELSE -- 4
+	         "11111111";
+```
+
+
 
 --- 
 ## Project Setup Instructions
