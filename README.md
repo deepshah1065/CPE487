@@ -59,9 +59,8 @@ Some kind of high level block diagram showing how different parts of your progra
 | `VGA_hsync` | VGA | Horizontal sync |
 | `VGA_vsync` | VGA | Vertical sync |
 | `SEG7_anode[7:0]` | 7-seg | Digit select |
-| `Counter` | 7-seg | Score of player |
-| `Attempts` | 7-seg | Attempts of player |
-| `SEG7_seg[6:0]` | 7-seg | Segment data |
+| `Counter` | Anode | Score of player |
+| `Attempts` | Anode | Attempts of player |
 | `SEG7_seg[6:0]` | 7-seg | Segment data |
 
 ### Bat and Ball VHDL File
