@@ -90,7 +90,7 @@ The design follows the modular structure used in the course labs, with separate 
 
 The original `bat_n_ball.vhd` file was based on a basic bat-and-ball pong demo. This file was heavily modified to implement a **Plinko-style game** with pegs, scoring zones, randomness, and limited attempts. Major changes include adding a scoring system, multiple fixed bats at the bottom of the screen, a peg grid for ball deflection, and game state control.
 
-New signals were introduced to track the game state, player score, remaining attempts, and collision locks to prevent double scoring.
+New signals were introduced to track the game state, player score, and remaining attempts. Additional signals include the bats and their locations, the pegs (ball_on1), peg and bat collision detectors, a random number generator, one 2D array for tracking the ball positions, another 2D for checking if each peg is hit in the game, starting with 0s throughout (Others => '0'), and collision locks to prevent double scoring.
 
 ```vhdl
 ...
@@ -128,7 +128,7 @@ type balls is array (0 to max_columns, 0 to max_rows) of integer;
 SIGNAL balls_x, balls_y: balls;
 type peg_hit_array is array (0 to max_columns, 0 to max_rows) of STD_LOGIC;
 SIGNAL pegs_hit : peg_hit_array := (others => (others => '0'));
-SIGNAL Random_Generator : STD_LOGIC_VECTOR(10 DOWNTO 0) := "10110100101
+SIGNAL Random_Generator : STD_LOGIC_VECTOR(10 DOWNTO 0) := "10110100101";
 SIGNAL peg_collision : STD_LOGIC := '0';
 SIGNAL bat_collision : STD_LOGIC := '0';
 ...
@@ -146,13 +146,13 @@ ELSIF game_on = '0' THEN
 END IF;
 ```
 
-This allows the player to aim where the ball will drop, unlike the original demo where the ball always started in a fixed position.
+This allows the player to aim where the ball will drop, unlike the original demo, where the ball always started in a fixed position.
 
 ---
 
 ## Peg Grid Generation
 
-A staggered grid of pegs was added to simulate a Plinko board. The pegs are generated using nested loops and alternate horizontal offsets every row.
+A staggered grid of pegs was added to simulate a Plinko board. The pegs are generated using nested loops and alternate horizontal offsets for every row.
 
 ```vhdl
 FOR row_idx IN 0 TO max_rows LOOP
@@ -228,7 +228,7 @@ END IF;
 ```
 
 ### `pong.vhd`
-The top level file of our project was based off of `pong.vhd` from Lab 6. We modified the original “batpos” from lab 6 to now be “ball_x_pos.” Instead of the bat moving, the ball can move from side to side. We also added a constraint where the player cannot move the ball passed x less than 20 and x greater than 780. We implemented “btnl-counter” and “btnr-counter” to slow down how fast the ball moves when a button is held. The clock runs fast, so if the ball moved every time the clock ticked, it would fly across the screen instantly. Instead, when the left or right button is held down, the counter starts counting clock cycles, and only when it reaches 1,000,000 does the ball move a little bit. After the ball moves, the counter resets and starts counting again. If the button is released, the counter resets right away. This makes the ball move smoothly and at a speed that can actually be controlled.
+The top-level file of our project was based on `pong.vhd` from Lab 6. We modified the original “batpos” from lab 6 to now be “ball_x_pos.” Instead of the bat moving, the ball can move from side to side. We also added a constraint where the player cannot move the ball passed x less than 20 and x greater than 780. We implemented “btnl-counter” and “btnr-counter” to slow down how fast the ball moves when a button is held. The clock runs fast, so if the ball moved every time the clock ticked, it would fly across the screen instantly. Instead, when the left or right button is held down, the counter starts counting clock cycles, and only when it reaches 1,000,000 does the ball move a little bit. After the ball moves, the counter resets and starts counting again. If the button is released, the counter resets right away. This makes the ball move smoothly and at a speed that can actually be controlled. 
 ```vhdl
 
    COMPONENT bat_n_ball IS
@@ -288,6 +288,7 @@ BEGIN
                     IF ball_x_pos > 20 THEN
                         ball_x_pos <= ball_x_pos - 5;
                     END IF;
+					--Others => '0' setting all the bits to 0
                     btnl_counter <= (OTHERS => '0');
                 END IF;
             ELSE
