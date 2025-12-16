@@ -1284,7 +1284,7 @@ Each peg can collide with the ball and change its horizontal direction.
 
 ## Random Ball Deflection
 
-To make the ball movement unpredictable, a simple LFSR-style random number generator was added. When the ball hits a peg, the random bit determines whether the ball moves left or right.
+To make the ball movement unpredictable, a simple linear-feedback shift register (LFSR) random number generator was added. When the ball hits a peg, the random bit determines whether the ball moves left or right.
 
 ```vhdl
 IF Random_Generator(0) = '0' THEN
@@ -1482,8 +1482,7 @@ BEGIN
 ## Project Setup Instructions
 1. Download all VHDL and .xdc files from this repo
 2. Create a new Vivado project for the Nexys A7-100T
-3. Add Sources:
-clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd and pong.vhd
+3. Add Sources: clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd, and pong.vhd
 4. Add Constraints File: pong.xdc
 5. Run Synthesis
 6. Run Implementation
@@ -1495,6 +1494,7 @@ clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd
 * Our group had the opportunity to create a Plinko game in Vivado, coded using Very High Speed Integrated Circuit Hardware Description Language (VHDL).
 * We explored the process of game development while strengthening our VHDL skills.
 * Overall, it was a fascinating experience, as we learned how to apply the concepts from Pong to create a Plinko game.
+
 ## Timeline
 11/14/2025 
 * Began brainstorming ideas for the project
@@ -1514,7 +1514,7 @@ clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd
 * Recolored the bats to be different colors
 
 12/4/2025
-* Added the ability to record what the score of the game
+* Added the ability to record the score of the game
 
 12/14/2025
 * Added collision to the pegs
@@ -1526,8 +1526,11 @@ clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd
 * Finalized the poster
 
 ## Difficulties
-The greatest difficulty our team encountered was with creating collisions with pegs and the balls. We mainly had issues with detecting the overlap of the ball and the pegs. We fixed this by altering the detection dimensions of the peg so that it could better overlap with the ball. Another issue we had was with the random bounce that the ball would have when it collided with a peg. We fixed this by implementing a signal that has a fixed value that would determine which way the ball bounced. Since it would reset with every clock cycle, this gave off the effect of random bouncing.
+The greatest difficulty our team encountered was creating collisions between the pegs and the ball. We mainly had issues with detecting the overlap of the ball and the pegs. We fixed this by adjusting the detection dimensions of the peg to allow for better overlap with the ball. Another issue we had was with the random bounce that the ball would have when it collided with a peg. We fixed this by implementing a signal that has a fixed value that would determine which way the ball bounced. Since it would reset with every clock cycle, this demonstrated the random effect taking place of whether it went to the right or left.
 
+## Responsibility
+
+---
 ## Future Works
 If we wanted to continue working on our project in the future, we plan to implement:
 * Implementing a betting system in the current Plinko game where the user starts with a set amount of money, which is displayed on the anodes. The user can place a bet, and if the ball hits a bat, their money could increase or decrease. This adds excitement and introduces a risk element to the game.
