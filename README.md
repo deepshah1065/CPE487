@@ -90,7 +90,7 @@ The design follows the modular structure used in the course labs, with separate 
 
 The original `bat_n_ball.vhd` file was based on a basic bat-and-ball pong demo. This file was heavily modified to implement a **Plinko-style game** with pegs, scoring zones, randomness, and limited attempts. Major changes include adding a scoring system, multiple fixed bats at the bottom of the screen, a peg grid for ball deflection, and game state control.
 
-New signals were introduced to track the game state, player score, and remaining attempts. Additional signals include the bats and their locations, the pegs (ball_on1), peg and bat collision detectors, a random number generator, one 2D array for tracking the ball positions, another 2D for checking if each peg is hit in the game, starting with 0 as the bit values (Others => '0'), and collision locks to prevent double scoring.
+New signals were introduced to track the game state, player score, and remaining attempts. Additional signals include the bats and their locations, the pegs (ball_on1), peg and bat collision detectors, a random number generator, one 2D array for tracking the ball positions, another 2D for checking if each peg is hit in the game setting all remaining bits as 0 (Others => '0'), and collision locks to prevent double scoring.
 
 ```vhdl
 ...
@@ -288,7 +288,7 @@ BEGIN
                     IF ball_x_pos > 20 THEN
                         ball_x_pos <= ball_x_pos - 5;
                     END IF;
-					--OTHERS => '0' setting all the bits to 0
+					--OTHERS => '0' setting all the remaining bits to 0
                     btnl_counter <= (OTHERS => '0');
                 END IF;
             ELSE
