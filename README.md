@@ -13,7 +13,7 @@ The design follows the modular structure used in the course labs, with separate 
 - Clock generation
 - Seven-segment display control
 ## Required Hardware
-- **Digilent Nexys A7 FPGA board**
+- **Digilent Nexys A7 FPGA Board**
 <img src="image.jpg" alt="drawing" width="200"/>
 
 - **VGA Monitor** (800×600 @ 60 Hz)
