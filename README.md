@@ -1310,11 +1310,11 @@ Some bats award zero points, adding risk and strategy to where the ball lands.
 The game includes a limited number of attempts. Each time the ball reaches the bottom, one attempt is consumed. When no attempts remain, the game ends.
 
 ```vhdl
-IF attempts1 > "0001" THEN
-    attempts1 <= attempts1 - 1;
-ELSIF attempts1 = "0001" THEN
-    attempts1 <= "0000";
-    game_over <= '1';
+IF attempts1 > "0000" THEN
+	attempts1 <= attempts1 - 1;
+ELSE
+	attempts1 <= "0000";
+	game_over <= '1';
 END IF;
 ```
 
