@@ -283,6 +283,12 @@ BEGIN
             ball_y_motion <= ball_speed;
             game_on <= '0';
             -- Decrement attempts when ball reaches bottom
+            IF attempts1 > "0000" THEN
+                attempts1 <= attempts1 - 1;
+            ELSE
+                attempts1 <= "0000";
+                game_over <= '1';
+            END IF;
         END IF;
         
         -- Bounce off left or right walls
@@ -336,9 +342,9 @@ BEGIN
                 counter1 <= counter1 + 1;  -- Bat 1: 1 point
                 lockpoint <= '1';
                 -- Decrement attempts after hitting bat
-                IF attempts1 > "0000" THEN
+                IF attempts1 > "0001" THEN
                     attempts1 <= attempts1 - 1;
-                ELSIF attempts1 = "0000" THEN
+                ELSIF attempts1 = "0001" THEN
                     attempts1 <= "0000";
                     game_over <= '1';
                 END IF;
