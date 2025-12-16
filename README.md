@@ -1230,8 +1230,9 @@ clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd
 
 --- 
 ## Conclusion
-In conclusion, our group has the wonderful opportunity We created the game Plinko by coding VHDL  in Vivado.
-We got the opportunity to create a game and strengthen our skills in VHDL.
+* Our group had the opportunity to create a Plinko game in Vivado, coded using Very High Speed Integrated Circuit Hardware Description Language (VHDL).
+* We explored the process of game development while strengthening our VHDL skills.
+* Overall, it was a fascinating experience, as we learned how to apply the concepts from Pong to create a Plinko game.
 ## Timeline
 11/14/2025 
 * Began brainstorming ideas for the project
@@ -1240,7 +1241,7 @@ We got the opportunity to create a game and strengthen our skills in VHDL.
 * Submitted our project idea as Plinko
 
 11/20/2025
-* Began work on the plinko project by modifying the Pong lab
+* Began work on the Plinko project by modifying the Pong lab
 * Reworked the bat functionality so 8 appeared on the bottom
 		   
 11/25/2025 
@@ -1259,12 +1260,13 @@ We got the opportunity to create a game and strengthen our skills in VHDL.
 * Recolored the bats and assigned proper point values
 		   
 12/15/2025
-* Added counter to show number of attempts left
+* Added a counter to show the number of attempts left
 * Finalized the poster
 
 ## Future Works
-Future works include creating the Plinko with a betting system and implementing changes in location of the bats after hitting it.
-
+If we wanted to continue working on our project in the future, we plan to implement:
+* Implementing a betting system in the current Plinko game where the user starts with a set amount of money, which is displayed on the anodes. The user can place a bet, and if the ball hits a bat, their money could increase or decrease. This adds excitement and introduces a risk element to the game.
+* After the ball hits a bat, the bats will randomly change their locations.
 
 
 
