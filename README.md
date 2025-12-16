@@ -90,7 +90,7 @@ The design follows the modular structure used in the course labs, with separate 
 
 The original `bat_n_ball.vhd` file was based on a basic bat-and-ball pong demo. This file was heavily modified to implement a **Plinko-style game** with pegs, scoring zones, randomness, and limited attempts. Major changes include adding a scoring system, multiple fixed bats at the bottom of the screen, a peg grid for ball deflection, and game state control.
 
-New signals were introduced to track the game state, player score, and remaining attempts. Additional signals include the bats and their locations, the pegs (ball_on1), peg and bat collision detectors, a random number generator, one 2D array for tracking the ball positions, another 2D for checking if each peg is hit in the game, starting with 0s throughout (Others => '0'), and collision locks to prevent double scoring.
+New signals were introduced to track the game state, player score, and remaining attempts. Additional signals include the bats and their locations, the pegs (ball_on1), peg and bat collision detectors, a random number generator, one 2D array for tracking the ball positions, another 2D for checking if each peg is hit in the game, starting with 0 as the bit values (Others => '0'), and collision locks to prevent double scoring.
 
 ```vhdl
 ...
@@ -288,7 +288,7 @@ BEGIN
                     IF ball_x_pos > 20 THEN
                         ball_x_pos <= ball_x_pos - 5;
                     END IF;
-					--Others => '0' setting all the bits to 0
+					--OTHERS => '0' setting all the bits to 0
                     btnl_counter <= (OTHERS => '0');
                 END IF;
             ELSE
@@ -334,7 +334,7 @@ BEGIN
 ```
 
 ### `leddec16.vhd`
-This file was modified so there are more bits (16 to 20) in 'data'. Since we needed 4 anodes for the score and 1 anode for the amount of attempts the player has. We also had to turn on the 5th anode to display the attempts.
+This file was modified so there are more bits (16 to 20) in 'data'. Since we needed 4 anodes for the score and 1 anode for the number of attempts, the player has. We also had to turn on the 5th anode to display the attempts.
 ```vhdl
 ENTITY leddec16 IS
 	PORT (
