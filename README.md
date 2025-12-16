@@ -35,10 +35,10 @@ The design follows the modular structure used in the course labs, with separate 
 * Gold: 5 points 
 --- 
 ## Gameplay
-### Game GIF
+### GIF
+#### Game
 ![Game](gameplay.gif)
-
-### Game GIF
+#### Board
 ![Game](board.gif)
 
 ### JPG
@@ -1285,7 +1285,7 @@ Each peg can collide with the ball and change its horizontal direction.
 
 ## Random Ball Deflection
 
-To make the ball movement unpredictable, a simple linear-feedback shift register (LFSR) random number generator was added. When the ball hits a peg, the random bit determines whether the ball moves left or right.
+To make the ball movement unpredictable, a simple linear-feedback shift register (LFSR) random number generator was added. The LFSR produces a pseudo-random bit sequence (for example, 10110100101) that updates every clock cycle. When the ball collides with a peg, the system examines the rightmost bit of the sequence: if the bit is 0, the ball is deflected to the right, and if it is 1, the ball is deflected to the left. After each collision, the sequence shifts so that the rightmost bit moves to the left, allowing a new bit to influence the next deflection. This approach introduces controlled randomness into the ball’s motion.
 
 ```vhdl
 IF Random_Generator(0) = '0' THEN
