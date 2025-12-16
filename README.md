@@ -1221,8 +1221,8 @@ talk about how we used lab 6
 1. Download all VHDL and .xdc files from this repo
 2. Create a new Vivado project for the Nexys A7-100T
 3. Add Sources:
-pong.vhd
-4. Add Constraints File: .xdc
+clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd and pong.vhd
+4. Add Constraints File: pong.xdc
 5. Run Synthesis
 6. Run Implementation
 7. Generate Bitstream
