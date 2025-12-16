@@ -28,7 +28,7 @@ The design follows the modular structure used in the course labs, with separate 
 --- 
 ## Diagrams
 ### Module Hierarchy Diagram
-![Diagram](ModuleHierarchy.jpg)
+![Diagram](Hierarchy.png)
 --- 
 
 ## Scoring System
