@@ -28,7 +28,16 @@ The design follows the modular structure used in the course labs, with separate 
 --- 
 ## Diagrams
 Some kind of high level block diagram showing how different parts of your program connect together and/or showing how what you have created might fit into a more complete system could be appropriate instead
+--- 
 
+## Scoring System
+* Red: 0 points
+* Blue: 1 point 
+* Green: 2 points 
+* Pink: 3 points 
+* Gold: 5 points 
+--- 
+ 
 ## Gameplay
 ### Game GIF
 ![Game](gameplay.gif)
