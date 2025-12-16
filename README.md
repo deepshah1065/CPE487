@@ -26,13 +26,6 @@ The design follows the modular structure used in the course labs, with separate 
 <img src="micro_usb_cable.png" alt="drawing" width="200"/>
 
 --- 
-## Diagrams
-### Module Hierarchy Diagram
-![Diagram](ModuleHierarchy.png)
-### Game Functionality Diagram
-![Diagram](GameFunctionality.jpg)
-
---- 
 
 ## Scoring System
 * Red: 0 points
@@ -52,7 +45,13 @@ The design follows the modular structure used in the course labs, with separate 
 ![Game](PlinkoGame.jpg)
 
 ---
+## Diagrams
+### Module Hierarchy Diagram
+![Diagram](ModuleHierarchy.png)
+### Game Functionality Diagram
+![Diagram](GameFunctionality.jpg)
 
+---
 ## Inputs and Outputs
 ### Inputs
 | Signal | Board Resource | Description |
