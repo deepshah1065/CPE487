@@ -1214,9 +1214,119 @@ set_property -dict {PACKAGE_PIN J17 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[
 
 --- 
 ## Modifications
+
+### `bat_n_ball.vhd` Modified (Plinko Game Logic)
+
+The original `bat_n_ball.vhd` file was based on a basic bat-and-ball pong demo. This file was heavily modified to implement a **Plinko-style game** with pegs, scoring zones, randomness, and limited attempts. Major changes include adding a scoring system, multiple fixed bats at the bottom of the screen, a peg grid for ball deflection, and game state control.
+
+New signals were introduced to track the game state, player score, remaining attempts, and collision locks to prevent double scoring.
+
+```vhdl
+...
+SIGNAL counter1   : STD_LOGIC_VECTOR(6 DOWNTO 0);
+SIGNAL attempts1  : STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL game_on    : STD_LOGIC := '0';
+SIGNAL game_over  : STD_LOGIC := '0';
+SIGNAL lockpoint  : STD_LOGIC := '0';
+...
+````
+
+---
+
+## Button-Controlled Ball Position
+
+Before the ball is served, the player can move the ball left and right using the FPGA buttons. The ball’s X-position follows the input value until the serve button is pressed.
+
+```vhdl
+ELSIF game_on = '0' THEN
+    ball_x_1 <= ball_x;
+END IF;
+```
+
+This allows the player to aim where the ball will drop, unlike the original demo where the ball always started in a fixed position.
+
+---
+
+## Peg Grid Generation
+
+A staggered grid of pegs was added to simulate a Plinko board. The pegs are generated using nested loops and alternate horizontal offsets every row.
+
+```vhdl
+FOR row_idx IN 0 TO max_rows LOOP
+    peg_y := row_idx * peg_row_gap + 100;
+    FOR col_idx IN 0 TO max_columns LOOP
+        IF (row_idx MOD 2 = 0) THEN
+            peg_x := col_idx * peg_col_gap + 50;
+        ELSE
+            peg_x := col_idx * peg_col_gap + 25;
+        END IF;
+```
+
+Each peg can collide with the ball and change its horizontal direction.
+
+---
+
+## Random Ball Deflection
+
+To make the ball movement unpredictable, a simple LFSR-style random number generator was added. When the ball hits a peg, the random bit determines whether the ball moves left or right.
+
+```vhdl
+IF Random_Generator(0) = '0' THEN
+    ball_x_motion <= ball_speed;
+ELSE
+    ball_x_motion <= (NOT ball_speed) + 1;
+END IF;
+
+Random_Generator <= Random_Generator(9 DOWNTO 0) &
+                    (Random_Generator(10) XOR Random_Generator(9));
+```
+
+---
+
+## Multiple Scoring Bats
+
+Instead of a single bat, eight fixed bats were added along the bottom of the screen. Each bat awards a different number of points when hit.
+
+```vhdl
+-- Example scoring bat
+IF bat7_hit = '1' THEN
+    counter1 <= counter1 + 5;
+END IF;
+```
+
+Some bats award zero points, adding risk and strategy to where the ball lands.
+
+---
+
+## Attempts and Game Over Logic
+
+The game includes a limited number of attempts. Each time the ball reaches the bottom, one attempt is consumed. When no attempts remain, the game ends.
+
+```vhdl
+IF attempts1 > "0001" THEN
+    attempts1 <= attempts1 - 1;
+ELSIF attempts1 = "0001" THEN
+    attempts1 <= "0000";
+    game_over <= '1';
+END IF;
+```
+
+---
+
+## Collision Locking
+
+Because collision detection runs every clock cycle, a lock signal was added to prevent the same collision from being counted multiple times.
+
+```vhdl
+IF lockpoint = '0' THEN
+    counter1 <= counter1 + 1;
+    lockpoint <= '1';
+END IF;
+```
+
 ### `pong.vhd`
 The top level file of our project was based off of `pong.vhd` from Lab 6. We modified the original “batpos” from lab 6 to now be “ball_x_pos.” Instead of the bat moving, the ball can move from side to side. We also implemented “btnl-counter” and “btnr-counter” to slow down how fast the ball moves when a button is held. The clock runs fast, so if the ball moved every time the clock ticked, it would fly across the screen instantly. Instead, when the left or right button is held down, the counter starts counting clock cycles, and only when it reaches 1,000,000 does the ball move a little bit. After the ball moves, the counter resets and starts counting again. If the button is released, the counter resets right away. This makes the ball move smoothly and at a speed that can actually be controlled.
-```
+```vhdl
 
    COMPONENT bat_n_ball IS
         PORT (
@@ -1321,7 +1431,7 @@ BEGIN
 
 ### `leddec16.vhd`
 This file was modified so there are more bits in data. Since we needed 4 anodes for the score and 1 anode for the amount of attempts the player has. We also had to turn on the 5th anode to display the attempts.
-```
+```vhdl
 ENTITY leddec16 IS
 	PORT (
 		dig : IN STD_LOGIC_VECTOR (2 DOWNTO 0); -- which digit to currently display
