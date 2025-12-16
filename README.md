@@ -28,7 +28,10 @@ The design follows the modular structure used in the course labs, with separate 
 --- 
 ## Diagrams
 ### Module Hierarchy Diagram
-![Diagram](Hierarchy.png)
+![Diagram](ModuleHierarchy.png)
+### Game Functionality Diagram
+![Diagram](GameFunctionality.jpg)
+
 --- 
 
 ## Scoring System
