@@ -1490,11 +1490,12 @@ BEGIN
 
 --- 
 ## Conclusion
+### Summary
 * Our group had the opportunity to create a Plinko game in Vivado, coded using Very High Speed Integrated Circuit Hardware Description Language (VHDL).
 * We explored the process of game development while strengthening our VHDL skills.
 * Overall, it was a fascinating experience, as we learned how to apply the concepts from Pong to create a Plinko game.
 
-## Timeline
+### Timeline
 11/14/2025 
 * Began brainstorming ideas for the project
 
@@ -1524,10 +1525,22 @@ BEGIN
 * Added a counter to show the number of attempts left
 * Finalized the poster
 
-## Difficulties
+### Difficulties
 The greatest difficulty our team encountered was creating collisions between the pegs and the ball. We mainly had issues with detecting the overlap of the ball and the pegs. We fixed this by adjusting the detection dimensions of the peg to allow for better overlap with the ball. Another issue we had was with the random bounce that the ball would have when it collided with a peg. We fixed this by implementing a signal that has a fixed value that would determine which way the ball bounced. Since it would reset with every clock cycle, this demonstrated the random effect taking place of whether it went to the right or left.
 
-## Responsibility
+### Responsibility
+As a group, we all contributed to the GitHub Repository. 
+Below is what we each contributed:
+John Carlo Figueras:
+* I worked on drawing the pegs in the bat_n_ball.vhd.
+* I worked on displaying and accumulating the scores as the counter values on the board in the bat_n_ball.vhd and leddec.vhd.
+Connor Hsuan:
+* I worked on the collision of the ball with all the pegs in the bat_n_ball.vhd from Eli's advice.
+* I worked on the attempts display on the board in the bat_n_ball.vhd and leddec.vhd.
+Deep Shah:
+* I worked on drawing the bats in the bat_n_ball.vhd
+* I worked on colliding the ball with all the bats in the bat_n_ball.vhd.
+* I use my computer to run all the code for our group.
 
 ---
 ## Future Works
