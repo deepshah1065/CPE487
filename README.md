@@ -1263,6 +1263,9 @@ clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, vga_sync.vhd, bat_n_ball.vhd, leddec16.vhd
 * Added a counter to show the number of attempts left
 * Finalized the poster
 
+## Difficulties
+The greatest difficulty our team encountered was with creating collisions with pegs and the balls. We mainly had issues with detecting the overlap of the ball and the pegs. We fixed this by altering the detection dimensions of the peg so that it could better overlap with the ball. Another issue we had was with the random bounce that the ball would have when it collided with a peg. We fixed this by implementing a signal that has a fixed value that would determine which way the ball bounced. Since it would reset with every clock cycle, this gave off the effect of random bouncing.
+
 ## Future Works
 If we wanted to continue working on our project in the future, we plan to implement:
 * Implementing a betting system in the current Plinko game where the user starts with a set amount of money, which is displayed on the anodes. The user can place a bet, and if the ball hits a bat, their money could increase or decrease. This adds excitement and introduces a risk element to the game.
