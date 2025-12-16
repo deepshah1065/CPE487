@@ -1531,6 +1531,7 @@ The greatest difficulty our team encountered was creating collisions between the
 ### Responsibility
 As a group, we all contributed to the GitHub Repository. 
 Below is what we each contributed:
+
 John Carlo Figueras:
 * I worked on drawing the pegs in the bat_n_ball.vhd.
 * I worked on displaying and accumulating the scores as the counter values on the board in the bat_n_ball.vhd and leddec.vhd.
