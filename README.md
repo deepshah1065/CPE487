@@ -28,7 +28,7 @@ The design follows the modular structure used in the course labs, with separate 
 --- 
 ## Diagrams
 ### Module Hierarchy Diagram
-![Diagram](CPE 487_Module Hierarchy Diagram.pdf)
+![Diagram](ModuleHierarchy.jpg)
 --- 
 
 ## Scoring System
