@@ -27,7 +27,8 @@ The design follows the modular structure used in the course labs, with separate 
 
 --- 
 ## Diagrams
-Some kind of high level block diagram showing how different parts of your program connect together and/or showing how what you have created might fit into a more complete system could be appropriate instead
+### Module Hierarchy Diagram
+![Diagram](CPE_487_Module Hierarchy Diagram.pdf)
 --- 
 
 ## Scoring System
@@ -37,7 +38,6 @@ Some kind of high level block diagram showing how different parts of your progra
 * Pink: 3 points 
 * Gold: 5 points 
 --- 
- 
 ## Gameplay
 ### Game GIF
 ![Game](gameplay.gif)
@@ -70,7 +70,6 @@ Some kind of high level block diagram showing how different parts of your progra
 | `SEG7_anode[7:0]` | 7-seg | Digit select |
 | `Counter` | Anode | Score of player |
 | `Attempts` | Anode | Attempts of player |
-| `SEG7_seg[6:0]` | 7-seg | Segment data |
 
 ### Bat and Ball VHDL File
 ```vhdl
