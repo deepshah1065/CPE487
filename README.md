@@ -1534,9 +1534,11 @@ Below is what we each contributed:
 John Carlo Figueras:
 * I worked on drawing the pegs in the bat_n_ball.vhd.
 * I worked on displaying and accumulating the scores as the counter values on the board in the bat_n_ball.vhd and leddec.vhd.
+
 Connor Hsuan:
 * I worked on the collision of the ball with all the pegs in the bat_n_ball.vhd from Eli's advice.
 * I worked on the attempts display on the board in the bat_n_ball.vhd and leddec.vhd.
+
 Deep Shah:
 * I worked on drawing the bats in the bat_n_ball.vhd
 * I worked on colliding the ball with all the bats in the bat_n_ball.vhd.
