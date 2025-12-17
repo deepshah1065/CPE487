@@ -89,6 +89,7 @@ BEGIN
                     IF ball_x_pos > 20 THEN
                         ball_x_pos <= ball_x_pos - 5;
                     END IF;
+                    --OTHERS => '0' setting all the remaining bits to 0
                     btnl_counter <= (OTHERS => '0');
                 END IF;
             ELSE
