@@ -53,25 +53,26 @@ The design follows the modular structure used in the course labs, with separate 
 
 ---
 ## Inputs and Outputs
-### Inputs
+## Inputs
 | Signal | Board Resource | Description |
 |------|---------------|-------------|
-| `clk_in` | 100 MHz clock | System clock |
-| `btn0` | Pushbutton | Serve / start | 
-| `btnl` | Pushbutton | Move bat left |
-| `btnr` | Pushbutton | Move bat right |
+| `clk_in` | 100 MHz clock | System clock used to drive all synchronous logic including VGA timing and game state updates. *(Starter)* |
+| `btn0` | Pushbutton | Serve/start button that initializes gameplay and releases the ball. *(Starter)* |
+| `btnl` | Pushbutton | Moves the player bat left while pressed. *(Starter)* |
+| `btnr` | Pushbutton | Moves the player bat right while pressed. *(Starter)* |
 
-### Outputs
+## Outputs
 | Signal | Board Resource | Description |
 |-------|---------------|-------------|
-| `VGA_red[3:0]` | VGA DAC | Red channel |
-| `VGA_green[3:0]` | VGA DAC | Green channel |
-| `VGA_blue[3:0]` | VGA DAC | Blue channel |
-| `VGA_hsync` | VGA | Horizontal sync |
-| `VGA_vsync` | VGA | Vertical sync |
-| `SEG7_anode[7:0]` | 7-seg | Digit select |
-| `Counter` | Anode | Score of player |
-| `Attempts` | Anode | Attempts of player |
+| `VGA_red[3:0]` | VGA DAC | Red color channel for VGA video output. *(Starter)* |
+| `VGA_green[3:0]` | VGA DAC | Green color channel for VGA video output. *(Starter)* |
+| `VGA_blue[3:0]` | VGA DAC | Blue color channel for VGA video output. *(Starter)* |
+| `VGA_hsync` | VGA | Horizontal synchronization signal for VGA timing. *(Starter)* |
+| `VGA_vsync` | VGA | Vertical synchronization signal for VGA timing. *(Starter)* |
+| `SEG7_anode[7:0]` | 7-seg | Digit select lines for multiplexed 7-segment display. *(Starter)* |
+| `Counter` | 7-seg anode | Displays the player score. *(New)* |
+| `Attempts` | 7-seg anode | Displays the number of player attempts. *(New)* |
+
 
 
 --- 
