@@ -56,22 +56,22 @@ The design follows the modular structure used in the course labs, with separate 
 ## Inputs
 | Signal | Board Resource | Description |
 |------|---------------|-------------|
-| `clk_in` | 100 MHz clock | System clock used to drive all synchronous logic including VGA timing and game state updates. *(Starter)* |
-| `btn0` | Pushbutton | Serve/start button that initializes gameplay and releases the ball. *(Starter)* |
-| `btnl` | Pushbutton | Moves the player bat left while pressed. *(Starter)* |
-| `btnr` | Pushbutton | Moves the player bat right while pressed. *(Starter)* |
+| `clk_in` | 100 MHz clock | The system clock is used to drive all synchronous logic, including the VGA timing and game state updates. *(Starter)* |
+| `btn0` | Push Button (BTNC) | This allows the user to initialize gameplay and release the ball. *(Starter)* |
+| `btnl` | Push Button (BTNL) | This allows the user to move the ball left while pressing BTNL. *(Starter)* |
+| `btnr` | Push Button (BTNR) | This allows the users to move the ball that is on top to the right while pressing BTNR.*(Starter)* |
 
 ## Outputs
 | Signal | Board Resource | Description |
 |-------|---------------|-------------|
-| `VGA_red[3:0]` | VGA DAC | Red color channel for VGA video output. *(Starter)* |
-| `VGA_green[3:0]` | VGA DAC | Green color channel for VGA video output. *(Starter)* |
-| `VGA_blue[3:0]` | VGA DAC | Blue color channel for VGA video output. *(Starter)* |
-| `VGA_hsync` | VGA | Horizontal synchronization signal for VGA timing. *(Starter)* |
-| `VGA_vsync` | VGA | Vertical synchronization signal for VGA timing. *(Starter)* |
-| `SEG7_anode[7:0]` | 7-seg | Digit select lines for multiplexed 7-segment display. *(Starter)* |
-| `Counter` | 7-seg anode | Displays the player score. *(New)* |
-| `Attempts` | 7-seg anode | Displays the number of player attempts. *(New)* |
+| `VGA_red[3:0]` | VGA DAC | This represents the red color channel for VGA video output. *(Starter)* |
+| `VGA_green[3:0]` | VGA DAC | This represents the green color channel for VGA video output. *(Starter)* |
+| `VGA_blue[3:0]` | VGA DAC | This represents the blue color channel for VGA video output. *(Starter)* |
+| `VGA_hsync` | VGA | This represents the horizontal synchronization signal for VGA timing. *(Starter)* |
+| `VGA_vsync` | VGA | This represents the vertical synchronization signal for VGA timing. *(Starter)* |
+| `SEG7_anode[7:0]` | 7-seg | This shows the digit select lines for a multiplexed 7-segment display. *(Starter)* |
+| `Counter` | 7-seg anode (0-3 Anodes) | This displays the player scores on anodes 0-3 and accumulates the values for all 5 attempts for the player. *(New)* |
+| `Attempts` | 7-seg anode (4th Anodes)| This displays the number of attempts the user has on anode 4 and decrements it by 1 each time the user plays. *(New)* |
 
 
 
